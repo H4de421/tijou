@@ -1,12 +1,13 @@
 CC=gcc
-CFLAGS = -Wall -Wextra -Werror -std=c99 -Wvla
-OBJ = board/board.o tiles/tiles.o player/player.o
-TEST = test.o 
+CFLAGS = -Wall -Wextra -Werror -std=c99 -Wvla -g -fsanitize=address
+LDFLAGS = -fsanitize=address
+OBJ = board/board.o tiles/tiles.o player/player.o pin/pin.o
+TEST = game.o 
 
 all: check
 
 check: $(TEST) $(OBJ)
-	$(CC) -o $@ $^
+	$(CC) $(LDFLAGS) -o $@ $^
 
 clean:
 	$(RM) $(OBJ)
