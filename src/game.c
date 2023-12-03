@@ -1,6 +1,7 @@
 #define NB_PLAYER 4
 
 #include "board/board.h"
+#include "cards/cards.h"
 
 #include <stddef.h>
 #include <stdio.h>
@@ -8,6 +9,7 @@
 
 int main(void)
 {
+    /*
     struct player_s **players = malloc(sizeof(struct player_s) * NB_PLAYER);
     players[0] = create_player(0,red);
     players[1] = create_player(1,blue);
@@ -23,10 +25,10 @@ int main(void)
     print_board(test1);
     move_pin(test1, 0, 0, 40);
     print_board(test1);
-    /* 
+    / 
     players[2]->pin_exited = 5;
     players[3]->pin_exited = 2;
-    */
+    /
     print_scores(test1);
     for(int i = 0; i<4; i++)
     {
@@ -34,5 +36,16 @@ int main(void)
     }
     free(players);
     destroy_board(test1);
+    */
+    struct deck_s *deck = create_deck(1);
+    struct hand_s *hand1 = create_hand();
+    print_hand(hand1);
+    struct card_s *c1 = get_from_deck(deck);
+    add_to_hand(hand1, c1);
+    print_hand(hand1);
+    print_deck(deck);
+
+    destroy_hand(hand1);
+    destroy_deck(deck);
     return 0;
 }
